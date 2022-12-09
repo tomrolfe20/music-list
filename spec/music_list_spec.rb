@@ -1,26 +1,3 @@
-=begin
-# EXAMPLES 
-
-track = MusicList.new
-track.add_track('hello')
-track.track_list # => 'hello'
-
-track = MusicList.new
-track.add_track('hello1')
-track.add_track('hello2')
-track.add_track('hello3')
-track.track_list # => ['hello1', 'hello2', 'hello3']
-
-track = MusicList.new
-track.track_list # => 'No tracks to print'
-
-
-#Add a track
-#Add a track and print it 
-#Add multiple tracks and print them
-#Print when there isn't any tracks should throw error 
-=end
-
 require 'music_list'
 
 describe MusicList do
@@ -29,6 +6,28 @@ describe MusicList do
             track = MusicList.new
             track.add_track('hello')
             expect(track.instance_variable_get(:@list)).to eq ['hello']
+        end
+    end
+
+    context 'there is a single track on the list' do
+        it 'will return track' do
+            track = MusicList.new
+            track.add_track('hello')
+            expect(track.track_list).to eq ['hello']
+        end
+    end
+    context 'there is multiple tracks on the list' do
+        it 'will return all tracks' do
+            track = MusicList.new
+            track.add_track('hello1')
+            track.add_track('hello2')
+            expect(track.track_list).to eq ['hello1', 'hello2']
+        end
+    end
+    context 'there are no tracks to print' do
+        it 'will raise an error' do
+            track = MusicList.new 
+            expect{ track.track_list }.to raise_error 'No tracks to print'
         end
     end
 end

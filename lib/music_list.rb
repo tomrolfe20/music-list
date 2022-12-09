@@ -6,5 +6,7 @@ class MusicList
         @list << track
     end
     def track_list
+        raise 'No tracks to print' if @list == []
+        @list
     end
 end
